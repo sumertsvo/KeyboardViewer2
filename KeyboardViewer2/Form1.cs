@@ -36,11 +36,14 @@ namespace KeyboardViewer2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Location = new Point(Properties.Settings.Default.X, Properties.Settings.Default.Y);
-            Width = Properties.Settings.Default.Width;
-            Height = Properties.Settings.Default.Height;
-            Opacity = Properties.Settings.Default.Opacity;
-
+            InterceptKeys.InitializeComponent();
+            if (Properties.Settings.Default.Height > 10)
+            {
+                Location = new Point(Properties.Settings.Default.X, Properties.Settings.Default.Y);
+                Width = Properties.Settings.Default.Width;
+                Height = Properties.Settings.Default.Height;
+                Opacity = Properties.Settings.Default.Opacity;
+            }
             TopMost = true;
             Enabled = false;
             newForm = new Form2();
@@ -72,9 +75,15 @@ namespace KeyboardViewer2
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            
+            
             foreach (var pict in this.Controls.OfType<PictureBox>())
             {
-                if (pict.Name == Convert.ToString(e.KeyCode))
+                if (Convert.ToString(pict.Tag) == Convert.ToString(e.KeyCode))
+                {
+                    pict.Visible = true;
+                }
+                if (Convert.ToString(pict.Tag) == Convert.ToString(e.KeyValue))
                 {
                     pict.Visible = true;
                 }

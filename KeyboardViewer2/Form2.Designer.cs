@@ -158,6 +158,7 @@
             this.Controls.Add(this.down);
             this.Controls.Add(this.left);
             this.Controls.Add(this.up);
+            this.KeyPreview = true;
             this.Name = "Form2";
             this.Text = "Form2";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
